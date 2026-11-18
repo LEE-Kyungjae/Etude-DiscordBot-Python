@@ -82,9 +82,9 @@ async def on_message_edit(before,after):
 # async def hello(ctx):
 #     await ctx.send("Hii There! I am Mannu And Welcome to the discord.py tutorial")    
 
-@bot.command
+@bot.command()
 async def hello(ctx):
-    ctx.send("제대로 작동하지않음")
+    await ctx.send("제대로 작동하지않음")
 
 
 
@@ -127,6 +127,10 @@ async def on_message(message):
         await message.delete()
         await message.channel.purge(limit=number)
         await message.channel.send(f"{number}개의 메시지를 삭제했습니다.")
+
+    # on_message를 직접 정의하면 기본 명령어 처리가 덮어씌워지므로,
+    # 접두사 명령어(.hello 등)가 동작하도록 직접 넘겨준다.
+    await bot.process_commands(message)
         
     
 
