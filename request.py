@@ -5,14 +5,15 @@ load_dotenv()
 
 # 사용자입력 0 : 전역 커멘드 지정, 1 : 길드 커멘드 지정
 print("전역커멘드면 0,\n길드커멘드면 1를 입력하세요")
-a = -1
-url =  "https://discord.com/api/v10/applications/"+str(os.environ.get("APPLICATION_ID"))+"/guilds/"+str(os.environ.get("GUILD_ID"))+"/commands"
-while a==0 or a==1 :
-    a = input()
-    if a == 0:
+# input()은 문자열을 돌려주므로 "0"/"1"과 비교하고, 올바른 값이 들어올 때까지 다시 묻는다.
+while True:
+    a = input().strip()
+    if a == "0":
         url ="https://discord.com/api/v10/applications/"+str(os.environ.get("APPLICATION_ID"))+"/commands"
-    elif a == 1:
+        break
+    elif a == "1":
         url = "https://discord.com/api/v10/applications/"+str(os.environ.get("APPLICATION_ID"))+"/guilds/"+str(os.environ.get("GUILD_ID"))+"/commands"
+        break
     else:
         print("잘못입력되었습니다. 다시입력하세요")
         
