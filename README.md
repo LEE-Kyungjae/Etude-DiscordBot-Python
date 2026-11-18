@@ -35,7 +35,23 @@ Download the latest version of Python from [python.org](https://www.python.org/d
 1. Open your terminal (Command Prompt for Windows or Terminal for macOS/Linux).
 2. Use the following commands to install necessary Python modules:
    ```bash
-   pip install discord
-   pip install asyncio
-   pip install requests
-   pip install python-dotenv
+   pip install discord.py requests python-dotenv flask
+   ```
+   `asyncio` is part of the Python standard library; do not `pip install asyncio` (that PyPI package is an obsolete Python 3.3 backport).
+
+### Step 3: Configure the Token
+Create a `.env` file next to the scripts (it is already in `.gitignore`):
+```
+TOKEN=your-bot-token
+# Only needed by request.py
+APPLICATION_ID=your-application-id
+GUILD_ID=your-server-id
+```
+
+### Step 4: Run
+```bash
+python botver3.py   # latest version: slash commands, message replies, "." prefix commands
+```
+- `botver1.py` / `botver2.py` are earlier iterations using the `!` prefix.
+- `request.py` registers a slash command through the Discord HTTP API (enter `0` for a global command, `1` for a guild command).
+- `server.py` is a minimal Flask server on port 5000.
